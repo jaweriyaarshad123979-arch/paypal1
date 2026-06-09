@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f5f7fa;
+  color: #2c2e2f;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  flex-wrap: wrap;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 10px;
+  border-radius: 20px;
+}
+
+.menu a:hover {
+  border: 1px solid gray;
+  color: #071180;
+}
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.section-reverse {
+  flex-direction: row-reverse;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.mega-menu,.advertiser-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  padding: 20px;
+  display: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  z-index: 1000;
+}
+.advertiser {
+  position: relative;
+}
+
+.advertiser-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 260px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+}
+.advertiser:hover .advertiser-box {
+  display: flex;
+}
+
+.advertiser-box h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #003087;
+}
+
+.adv-links p {
+  margin: 8px 0;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+}
+
+.adv-links p:hover {
+  color: #0070ba;
+}
+.adv-highlight {
+  background: #f5f7fa;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-weight: 600;
+  color: #003087;
+}
+.dropdown:hover .mega-menu,.dropdown:hover .advertiser-box {
+  display: flex;
+}
+ .dropdown.active .mega-menu,.dropdown.active .advertiser-box {
+  display: flex;
+}
+.column {
+  flex: 1;
+  padding: 10px;
+}
+
+.column h4 {
+  margin-bottom: 10px;
+}
+
+.column p {
+  margin: 5px 0;
+  font-size: 13px;
+  cursor: pointer;
+}
+.auth button {
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#login {
+  border: 2px solid black;
+  background: white;
+}
+
+#signup {
+  background: black;
+  color: white;
+}
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  color: white;
+  flex-wrap: wrap;
+}
+.banner{
+  background-image: url(img.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding-top: 5%;
+  padding-bottom: 25%;
+  background-size: 100%;
+  text-align: center;
+}
+.hero {
+  text-align: center;
+}
+
+.hero h1 {
+  color: #0070ba;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+.hero h1 {
+  text-align: center;
+  color: #0070ba;
+  font-size: 32px;
+  font-weight: 700;   /* 👈 bold fix */
+  margin-bottom: 40px;
+  display: block;
+}
+.content {
+  max-width: 500px;
+}
+
+.content h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 25px;
+  background: #1977aa;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #0b6595;
+}
+.hero,.section,.pp-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 10%;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.text,.section-content,.pp-content {
+  max-width: 500px;
+}
+
+.text h2,.section-content h2,.pp-content h2 {
+  color: #003087;
+  margin-bottom: 15px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.side-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-buttons button {
+  padding: 8px;
+  background: black;
+  color: white;
+  border-radius: 6px;
+  border: none;
+}
+.pp-footer {
+  padding: 40px 10%;
+  background: #fff;
+}
+
+.pp-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.pp-footer {
+  padding: 40px 10%;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.pp-footer-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #003087;
+  margin-bottom: 20px;
+}
+
+.pp-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 20px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.pp-footer-links a {
+  text-decoration: none;
+  color: #2c2e2f;
+}
+
+.pp-footer-links a:hover {
+  text-decoration: underline;
+  color: #0070ba;
+}
+
+.pp-footer-bottom {
+  font-size: 13px;
+  color: #6c7378;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.pp-footer-bottom a {
+  color: #6c7378;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.pp-footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+.country-selector {
+  float: right;
+  font-size: 14px;
+}
+.disclaimer-section {
+  background: #f5f7fa;
+  padding: 40px 10%;
+  font-size: 13px;
+  color: #6c7378;
+  line-height: 1.6;
+  border-top: 1px solid #e0e0e0;
+}
+
+.disclaimer-section a {
+  color: #0070ba;
+  text-decoration: none;
+}
+
+.disclaimer-section a:hover {
+  text-decoration: underline;
+}
+.cont,.section,.pp-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap; 
+}
+.text,.section-content,.pp-content {
+  flex: 1;
+  max-width: 500px;
+}
+.image,.section-image,.pp-image {
+  flex: 1;
+  text-align: center;
+}
+
+.image img,.section-image img,.pp-image img {
+  max-width: 100%;
+  height: auto;
+}
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .menu {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  /* AUTH BUTTONS */
+  .auth {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .auth button {
+    width: 90%;
+    margin: 0;
+  }
+
+  /* BANNER */
+  .banner {
+    padding: 40px 15px;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .content h1 {
+    font-size: 22px;
+  }
+
+  /* SECTIONS */
+  .hero,
+  .section,
+  .pp-section,
+  .cont {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 15px;
+  }
+
+  .text,
+  .section-content,
+  .pp-content {
+    max-width: 100%;
+  }
+
+  .image,
+  .section-image,
+  .pp-image {
+    margin-bottom: 15px;
+  }
+
+  /* BUTTON */
+  .btn {
+    width: 100%;
+  }
+
+  /* DROPDOWN MENU FIX */
+  .mega-menu,
+  .advertiser-box {
+    position: static;
+    width: 100%;
+    display: none;
+    box-shadow: none;
+  }
+
+  .dropdown.active .mega-menu,
+  .dropdown.active .advertiser-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* COLUMN STACK */
+  .column {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+</style>
+<body>
+<header class="navbar">
+    <button id="img">
+        <img src="download.jpg" alt="" height="50px" width="50px">
+    </button>
+
+    <nav class="menu">
+        <div class="dropdown">
+            <a href="#"><b>Personal <span>▼</span></b></a>
+
+            <div class="mega-menu">
+
+                  <h1>Paypal For You→</h1>
+                <div class="column">
+                    <h4>Shopping & Rewards →</h4>
+                    <p>Buy Now, Pay Later</p>
+                    <p>Rewards</p>
+                    <p>PayPal credit and cards</p>
+                    <p>PayPal Debit Card</p>
+                    <p>Paying with PayPal</p>
+                </div>
+
+                <div class="column">
+                    <h4>Send & Receive →</h4>
+                    <p>Send money</p>
+                    <p>Request money</p>
+                    <p>Pool money</p>
+                    <p>Donate</p>
+                    <p>Start selling</p>
+                </div>
+
+                <div class="column">
+                    <h4>Manage Your Money →</h4>
+                    <p>Add cards and banks</p>
+                    <p>Security and safety</p>
+                    <p>Set up Direct Deposit</p>
+                    <p>Add cash</p>
+                    <p>Subscriptions</p>
+                    <p>Savings and goals</p>
+                    <p>Cryptocurrency</p>
+                </div>
+
+                <div class="side-buttons">
+                    <button>Get the App →</button>
+                    <button>How PayPal Works →</button>
+                    <button>Money Hub →</button>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="dropdown">
+    <a href="#"><b>Business <span>▼</span></b></a>
+
+    
+    <div class="mega-menu">
+
+        <div class="column">
+            <h4>Business <br> Types →</h4>
+            <p>Enterprises</p>
+            <p>Small Businesses</p>
+            <p>Solopreneurs</p>
+            <p>Partners</p>
+            <p>Platforms</p>
+            <p>Industries</p>
+            <p>Developers</p>
+            <p>Advertisers</p>
+        </div>
+
+        <div class="column">
+            <h4>Accept <br> Payments →</h4>
+            <p>Online Checkout</p>
+            <p>Installment Payments</p>
+            <p>Guest Checkout</p>
+            <p>POS System</p>
+            <p>Invoicing</p>
+            <p>Payment Links</p>
+            <p>Enterprise Payments</p>
+            <p>Tap to Pay</p>
+        </div>
+
+        <div class="column">
+            <h4>Risk & <br>Operations →</h4>
+            <p>Make Payments</p>
+            <p>Risk Management</p>
+            <p>Reporting Tools</p>
+            <p>Shipping</p>
+            <p>Agentic Commerce</p>
+        </div>
+
+        <div class="column">
+            <h4>Financial <br>Services →</h4>
+            <p>Working Capital Loan</p>
+            <p>Business Loan</p>
+            <p>Business Debit Card</p>
+        </div>
+
+        <div class="side-buttons">
+            <button>Get Started →</button>
+            <button>Fees →</button>
+            <p>Payment Methods</p>
+            <p>3rd Party Integrations</p>
+            <p>Business Resource Center</p>
+            <p>Events</p>
+        </div>
+
+    </div>
+</div>
+<div class="dropdown advertiser">
+    <a href="#"><b>Advertiser <span>▼</span></b></a>
+
+    <div class="advertiser-box">
+        <h2>PayPal Ads →</h2><br><br>
+
+        <div class="adv-links">
+            <p>About PayPal Ads</p>
+
+            <div class="adv-highlight">
+                <span>PayPal Ads Solutions</span>
+            </div>
+
+            <p>PayPal Ads Resources</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+        <a href="#"><b>Developer</b></a>
+    </nav>
+    <div class="auth">
+        <button id="help">Help</button>
+        <button id="login"><b>Log In</b></button>
+        <button id="signup">Sign Up</button>
+    </div>
+</header>
+
+<section class="banner">
+    <div class="content">
+        <h1>Get $10 for <br> referring a friend</h1><br>
+        <p>Invite a friend who doesn't have PayPal and<br> you can get $10 each.</p><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn">Get Started</button><br>
+        <br><p id="para">Terms apply.See paypal.com/us/invitepal.<br><br>Offer may be canceled or modified at anytime.</p>
+    </div>
+
+ 
+</section>
+
+
+<section class="hero">
+    <h1>With ways to shop, pay and chip-in, <br> we're here for you.</h1>
+
+    <div class="cont">
+        <div class="image">
+            <img src="buy.png" alt="">
+        </div>
+
+        <div class="text">
+            <h2>Buy now and pay later with Pay in 4</h2>
+            <p>
+                Pay in 4 is PayPal's buy now, pay later installment solution.
+                Just choose Pay Later and Pay in 4 at checkout through millions
+                of online stores where PayPal is available and split your payment
+                into 4 interest-free payments.</p><br>
+            <a href="#">Learn More →</a>
+        </div>
+    </div>
+</section>
+  <div class="section">
+    <div class="section-content">
+      <h2>Start checking out with crypto</h2>
+      <p>PayPal gives you a new way to pay. Checkout with crypto when you shop at millions of online stores and get the same great PayPal experience.</p>
+      <p class="disclaimer">Checking out with crypto is a taxable transaction. Fees and exchange rates will apply. Buying and selling cryptocurrency is subject to a number of risks and PayPal does not make any recommendations. Consult your tax advisor.</p><br>
+      <a href="#">Buy Crypto →</a>
+    </div>
+    <div class="section-image">
+      <img src="boy.png" alt="">
+    </div>
+  </div>
+
+  <div class="section section-reverse">
+    <div class="section-content">
+      <h2>Express yourself with new animations when you send money</h2>
+      <p>Do more with friends - send money, split bills on PayPal quickly and easily.* Choose from our new collection of animations to add a personal touch.</p><br>
+      <a href="#">Send money now →</a>
+    </div>
+    <div class="section-image">
+      <img src="Pizza copy.png" alt="">
+    </div>
+  </div>
+  <div class="pp-section">
+    <div class="pp-content">
+      <h2>Get instant spend notifications</h2>
+      <p>Whether shopping at your usual store or somewhere new, we help keep checkout fast and your eligible purchase protected.** You also get instant spend notifications, so you can easily keep track of all your online hauls.</p><br>
+      <a href="#">Download the App →</a>
+    </div>
+    <div class="pp-image">
+      <img src="Instant-notification.png" alt="">
+    </div>
+  </div>
+
+  <div class="pp-section pp-section-reverse">
+     <div class="pp-image">
+      <img src="COIN.png" alt="">
+    </div>
+    <div class="pp-content">
+      <h2><span class="new-badge">New</span> Save more when you shop online with Honey</h2>
+      <p>Honey has joined the PayPal family. Use it to help find discounts at over 30,000 retailers online. Plus, Honey is 100% free.</p><br>
+      <a href="#">Join Honey →</a>
+    </div>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-content">
+      <h2 class="food-heading">Let great food come to you</h2>
+      <p>It's nice to have an evening off and not have to worry about cooking. So satisfy your cravings with a take out or order a new recipe box securely with PayPal.</p>
+    </div>
+    <div class="pp-image">
+      <img src="" alt="">
+    </div>
+  </div>
+
+  
+
+  <div class="disclaimer-section">
+    <p>* Paying friends back, or chipping in requires that you have an account with PayPal. A recipient will need to create an account with PayPal to receive money, if they don't already have one. An account with PayPal is required to send and receive money.</p>
+    <p>** Terms and limitations apply. See terms at <a href="">www.paypal.com/purchaseprotection</a>.</p>
+  </div>
+
+  <footer class="pp-footer">
+    <div class="pp-footer-logo">PayPal</div>
+    <div class="pp-footer-links">
+      <a href="#">Help</a>
+      <a href="#">Contact</a>
+      <a href="#">Fees</a>
+      <a href="#">Security Center</a>
+      <a href="#">Privacy Center</a>
+      <a href="#">Shop</a>
+      <a href="#">Apps</a>
+      <a href="#">Enterprise</a>
+      <a href="#">Partners</a>
+      <div class="country-selector">🌐 United States</div>
+    </div>
+    <div class="pp-footer-links">
+      <a href="#">About</a>
+      <a href="#">Newsroom</a>
+      <a href="#">Jobs</a>
+      <a href="#">Investor Relations</a>
+      <a href="#">Government Relations</a>
+    </div>
+    <div class="pp-footer-bottom">
+      <span>© 1999-2026</span>
+      <a href="#">Accessibility</a>
+      <a href="#">Privacy Statement</a>
+      <a href="#">Cookies</a>
+      <a href="#">Legal</a>
+      <a href="#">Licenses</a>
+      <p style="margin-top: 12px;">PayPal is located at 2211 N 1st St. San Jose, CA 95131</p>
+    </div>
+  </footer>
+</body>
+</html>
